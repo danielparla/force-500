@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- LISTA DE agent-->
+        <record model="ir.ui.view" id="agent_list">
+            <field name="name">force500.agent_list</field>
+            <field name="model">force500.agent</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="responsible_lab"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM Project agent Form View -->
+        <record model="ir.ui.view" id="agent_form">
+            <field name="name">force500.agent_form</field>
+            <field name="model">force500.agent</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Agent">
+                                <field name="name"/>
+                                <field name="description"/>
+                            </group>
+                            <group string="Lab">
+                                <field name="responsible_lab"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="agent_action_window">
+            <field name="name">Agent</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">force500.agent</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- MenuItem TYPE HAZARD -->
+        <menuitem name="Agents"
+                  id="menu_sevostudio_agents"
+                  parent="force-500.project_force_menu_config" sequence="2"
+                  action="agent_action_window"/>
+    </data>
+</odoo>

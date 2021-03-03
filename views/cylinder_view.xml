@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <!-- LISTA DE cylinder-->
+        <record model="ir.ui.view" id="force500_cylinder_list">
+            <field name="name">force500.cylinder_list</field>
+            <field name="model">force500.cylinder</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="cyl_size"/>
+                    <field name="cyl_manufacturing"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM cylinder cylinder Form View -->
+        <record model="ir.ui.view" id="cylinder_form">
+            <field name="name">force500.cylinder_form</field>
+            <field name="model">force500.cylinder</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Cylinder">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="cyl_manufacturing"/>
+                                <field name="cyl_size"/>
+                            </group>
+                            <group string="Design">
+                                <field name="image_measure" widget="image"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Weight">
+                                <field name="weight"/>
+                                <field name="allowable_min"/>
+                                <field name="allowable_max"/>
+                            </group>
+                            <group string="Measuring Length">
+                                <field name="measure_a"/>
+                                <field name="measure_b"/>
+                                <field name="measure_c"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Parts">
+                                <field name="cyl_valve"/>
+                                <field name="dipt_diameter"/>
+                            </group>
+                            <group string="Others">
+                                <field name="cyl_level"/>
+                                <field name="cyl_valve_true"/>
+                                <field name="cyl_valve_diameter"
+                                       attrs="{'invisible':[('cyl_valve_true', '=', False)]}"/>
+                                <field name="threading_type_true"/>
+                                <field name="threading_type"
+                                       attrs="{'invisible':[('threading_type_true', '=', False)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="cylinder_action_window">
+            <field name="name">cylinder500</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">force500.cylinder</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- MenuItem Cylinder -->
+        <menuitem name="Cylinders"
+                  id="menu_sevostudio_cylinders"
+                  parent="force-500.project_force_menu_config" sequence="2"
+                  action="cylinder_action_window"/>
+    </data>
+</odoo>

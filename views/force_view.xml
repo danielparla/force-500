@@ -1,0 +1,153 @@
+<odoo>
+    <data>
+        <!-- LISTA DE PROYECTOS Force500-->
+        <record model="ir.ui.view" id="force500_project_list">
+            <field name="name">force500.project_list</field>
+            <field name="model">force500.project</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="so_extern"/>
+                    <field name="customer_id"/>
+                    <field name="state"/>
+                    <!--field name="agent_id"/-->
+                    <field name="cylinder_quantity"/>
+                    <field name="agent_kgs_adjusted"/>
+                    <field name="total_rooms_volume"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM Project Force Form View -->
+        <record model="ir.ui.view" id="force500_project_form">
+            <field name="name">force500.project_form</field>
+            <field name="model">force500.project</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="People Related">
+                                <field name="customer_id"/>
+                                <field name="salesperson_id"/>
+                                <field name="user_id"/>
+                                <field name="related_people"/>
+                            </group>
+                            <group string="General Info">
+                                <field name="date"/>
+                                <field name="location"/>
+                                <field name="building_reference"/>
+                                <field name="so_extern"/>
+                                <!--field name="regulation_name"/-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Rooms">
+                                <field name="room_ids"/>
+                                <group string="Info">
+                                    <group>
+                                        <field name="room_account"/>
+                                        <field name="total_rooms_volume"/>
+                                        <field name="total_nozzles"/>
+                                    </group>
+                                    <group>
+                                        <!--field name="agent_id"/-->
+                                        <!--field name="agent_kgs"/-->
+                                        <field name="agent_kgs_adjusted"/>
+                                        <field name="agent_kgs_max"/>
+                                        <field name="flooding_factor"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Cylinders">
+                                <group string="Info">
+                                    <group>
+                                        <field name="cylinder_id"/>
+                                        <field name="cylinder_quantity"/>
+                                        <field name="cyl_manufacturing"/>
+                                        <field name="valves_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="cylinder_fill"/>
+                                        <field name="min_filling"/>
+                                        <field name="max_filling"/>
+                                        <field name="pressure"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Resume">
+                                <group string="Rooms Info">
+                                    <group>
+                                        <field name="room_account"/>
+                                        <field name="total_rooms_volume"/>
+                                        <field name="total_nozzles"/>
+                                        <field name="flooding_factor"/>
+                                    </group>
+                                    <group>
+                                        <!--field name="agent_id"/-->
+                                        <!--field name="agent_kgs"/-->
+                                        <field name="agent_kgs_adjusted"/>
+                                        <field name="agent_kgs_max"/>
+                                    </group>
+                                </group>
+                                <group string="Cylinders Info">
+                                    <group>
+                                        <field name="cylinder_id"/>
+                                        <field name="cylinder_quantity"/>
+                                        <field name="valves_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="cylinder_fill"/>
+                                        <field name="min_filling"/>
+                                        <field name="max_filling"/>
+                                        <field name="pressure"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Materials">
+                                <group string="Material list">
+                                    <field name="order_line_ids"/>
+                                </group>
+                            </page>
+                            <page string="Notes">
+                                <field name="advice"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="project_force_action_window">
+            <field name="name">Project Force500</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">force500.project</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="Sevo Force500" id="force_menu_root"
+                  sequence="7" web_icon="force500.static/description/icon.png"/>
+
+        <!-- menu categories -->
+        <menuitem name="Projects"
+                  id="sevostudio_force_menu_projects"
+                  parent="force_menu_root"
+                  action="project_force_action_window" sequence="2"/>
+
+        <menuitem name="Config"
+                  id="project_force_menu_config"
+                  parent="force_menu_root" sequence="4"/>
+
+        <!--menuitem name="Config"
+                  id="menu_config_config"
+                  parent="force_menu_root" sequence="1"/-->
+    </data>
+</odoo>

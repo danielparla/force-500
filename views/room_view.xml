@@ -1,0 +1,148 @@
+<odoo>
+    <data>
+        <!-- LISTA DE room-->
+        <record model="ir.ui.view" id="force500_room_list">
+            <field name="name">force500.room_list</field>
+            <field name="model">force500.room</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="total_surface"/>
+                    <field name="total_height"/>
+                    <field name="total_volume"/>
+                    <field name="total_final_volume"/>
+                    <field name="total_min_nozzles"/>
+                    <field name="total_suggest_nozzles"/>
+                    <field name="ceiling"/>
+                    <field name="sub_floor"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- FORM Project room Form View -->
+        <record model="ir.ui.view" id="project_form">
+            <field name="name">force500.room_form</field>
+            <field name="model">force500.room</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Dimensions">
+                                <field name="name"/>
+                                <field name="total_surface"/>
+                                <field name="total_height"/>
+                                <field name="total_volume"/>
+                                <field name="agent_kgs_max"/>
+                            </group>
+                            <group string="Totals">
+                                <field name="total_deduct"/>
+                                <field name="total_final_volume"/>
+                                <field name="total_suggest_nozzles"/>
+                                <field name="total_min_nozzles"/>
+                            </group>
+                        </group>
+                        <group string="Other Info">
+                            <group>
+                                <field name="regulation_id"/>
+                                <field name="altitude"/>
+                                <field name="temperature"/>
+                                <field name="fire_type1"
+                                       attrs="{'invisible':[('regulation_name', '!=', 'EN15004')]}"/>
+                                <field name="fire_type2" attrs="{'invisible':[('regulation_name', '=', 'EN15004')]}"/>
+                            </group>
+                            <group>
+                                <field name="correction"/>
+                                <field name="concentration"/>
+                                <field name="ceiling"/>
+                                <field name="sub_floor"/>
+                            </group>
+                            <field name="regulation_name" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Room">
+                                <group string="Room">
+                                    <group>
+                                        <field name="room_width"/>
+                                        <field name="room_length"/>
+                                        <field name="room_surface"/>
+                                        <field name="room_height"/>
+                                        <field name="room_volume"/>
+                                    </group>
+                                    <group>
+                                        <field name="room_deduct"/>
+                                        <field name="room_final_volume"/>
+                                        <field name="room_min_nozzles"/>
+                                        <field name="room_suggest_nozzles"/>
+                                        <field name="kgs_room_nozzle"/>
+                                    </group>
+                                </group>
+                                <group string="Design">
+                                    <field name="room_image_drawing"/>
+                                    <field name="room_details"/>
+                                </group>
+                            </page>
+                            <page string="Ceiling" attrs="{'invisible':[('ceiling', '=', False)]}">
+                                <group string="Ceiling">
+                                    <group>
+                                        <field name="roof_width"/>
+                                        <field name="roof_length"/>
+                                        <field name="roof_surface"/>
+                                        <field name="roof_height"/>
+                                        <field name="roof_volume"/>
+                                    </group>
+                                    <group>
+                                        <field name="roof_deduct"/>
+                                        <field name="roof_final_volume"/>
+                                        <field name="roof_min_nozzles"/>
+                                        <field name="roof_suggest_nozzles"/>
+                                        <field name="kgs_roof_nozzle"/>
+                                    </group>
+                                </group>
+                                <group string="Design">
+                                    <field name="roof_image_drawing"/>
+                                    <field name="roof_details"/>
+                                </group>
+                            </page>
+                            <page string="Sub-Floor" attrs="{'invisible':[('sub_floor', '=', False)]}">
+                                <group string="Sub-Floor">
+                                    <group>
+                                        <field name="floor_width"/>
+                                        <field name="floor_length"/>
+                                        <field name="floor_surface"/>
+                                        <field name="floor_height"/>
+                                        <field name="floor_volume"/>
+                                    </group>
+                                    <group>
+                                        <field name="floor_deduct"/>
+                                        <field name="floor_final_volume"/>
+                                        <field name="floor_min_nozzles"/>
+                                        <field name="floor_suggest_nozzles"/>
+                                        <field name="kgs_floor_nozzle"/>
+                                    </group>
+                                </group>
+                                <group string="Design">
+                                    <field name="floor_image_drawing"/>
+                                    <field name="floor_details"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="room_action_window">
+            <field name="name">Room</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">force500.room</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- MenuItem Room-->
+        <!--menuitem name="Room"
+                  id="menu_sevostudio_room"
+                  parent="force-500.project_force_menu_config" sequence="3"
+                  action="room_action_window"/-->
+    </data>
+</odoo>

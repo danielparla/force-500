@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_force500_project_public,force500.project,model_force500_project,,1,1,1,1
+access_force500_agent_public,force500.agent,model_force500_agent,,1,1,1,1
+access_force500_cylinder_public,force500.cylinder,model_force500_cylinder,,1,1,1,1
+access_force500_room_public,force500.room,model_force500_room,,1,1,1,1
